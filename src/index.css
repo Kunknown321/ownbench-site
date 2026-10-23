@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Bricolage Grotesque', 'Arial Black', system-ui, sans-serif;
+  --font-body: 'Public Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --color-chalk: #FAFAF6;
+  --color-ink: #121A16;
+  --color-mat-green: #1F7A55;
+  --color-deep-mat: #0E3B2A;
+  --color-tape-yellow: #F2C230;
+  --color-grid-line: #CFE0D6;
+  --color-muted-ink: #4A5A52;
+}
+
+:root {
+  --bg: #FAFAF6;
+  --tx: #121A16;
+  --mut: #4A5A52;
+  --ln: #CFE0D6;
+  --g: #1F7A55;
+  --dk: #0E3B2A;
+  --y: #F2C230;
+  --panel: #FFFFFF;
+  --d: 'Bricolage Grotesque', 'Arial Black', system-ui, sans-serif;
+  --b: 'Public Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.dark {
+  --bg: #0B1612;
+  --tx: #EEF3EF;
+  --mut: #A9BAB1;
+  --ln: #24402F;
+  --panel: #10201A;
+  --dk: #06100D;
+}
+
+body {
+  font-family: var(--b);
+  background-color: var(--bg);
+  color: var(--tx);
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--d);
+  letter-spacing: -0.02em;
+}
+
+/* The mat grid: 1px Grid Line at 24px intervals, the only pattern used in the brand */
+.mat-grid {
+  background-image: 
+    linear-gradient(var(--ln) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ln) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Tape mark on top-left of section or hero */
+.tape-mark {
+  position: absolute;
+  left: 24px;
+  top: 0;
+  width: 96px;
+  height: 14px;
+  background-color: var(--y);
+  z-index: 10;
+}
+
+/* Practical 6px corners & hairline borders */
+.bench-card {
+  border: 1px solid var(--ln);
+  border-radius: 6px;
+  background-color: var(--panel);
+}
+
+.bench-btn-primary {
+  background-color: var(--g);
+  color: #FAFAF6;
+  border-radius: 6px;
+  font-family: var(--d);
+  font-weight: 800;
+  transition: opacity 150ms ease, transform 100ms ease;
+}
+.bench-btn-primary:hover {
+  opacity: 0.94;
+}
+.bench-btn-primary:active {
+  transform: translateY(1px);
+}
+
+/* Strict focus visible ring with tape yellow */
+:focus-visible {
+  outline: 3px solid var(--y);
+  outline-offset: 3px;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Ownbench | Pay once. Own your tools.",
+  "description": "Offline desktop tools that solo online sellers buy one time and keep. Featuring Listing Bench—the batch listing asset creator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
