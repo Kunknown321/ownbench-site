@@ -1,0 +1,7 @@
+name = "ownbench-waitlist"
+main = "index.js"
+compatibility_date = "2024-12-01"
+
+d1_databases = [
+  { binding = "DB", database_name = "waitlist-db", database_id = "e4ef02b8-6863-42a6-80c3-9f89a562d6f8" }
+]

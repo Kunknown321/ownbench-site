@@ -27,18 +27,33 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
   const [waitlistEmail, setWaitlistEmail] = useState('');
   const [waitlistSubmitting, setWaitlistSubmitting] = useState(false);
   const [waitlistSubmitted, setWaitlistSubmitted] = useState(false);
+  const [waitlistWebsite, setWaitlistWebsite] = useState(''); // honeypot
+  const [waitlistError, setWaitlistError] = useState<string | null>(null);
+
+  // Real backend: Cloudflare Worker + D1 (waitlist-worker/ in this repo).
+  const WAITLIST_API_URL = 'https://ownbench-waitlist.feed-ndo.workers.dev/api/waitlist';
 
   const handleWaitlistSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!waitlistName.trim() || !waitlistEmail.trim()) return;
 
     setWaitlistSubmitting(true);
-    // Simulate API call - replace with actual endpoint when ready
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setWaitlistSubmitting(false);
-    setWaitlistSubmitted(true);
-    // In production: send to backend / API here
-    console.log('Waitlist signup:', { name: waitlistName, email: waitlistEmail });
+    setWaitlistError(null);
+    try {
+      const res = await fetch(WAITLIST_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: waitlistName.trim(), email: waitlistEmail.trim() }),
+      });
+      if (!res.ok) throw new Error(`status ${res.status}`);
+      setWaitlistSubmitted(true);
+    } catch {
+      setWaitlistError(
+        'Could not save right now — email support.openbench@gmail.com and you are on the list.',
+      );
+    } finally {
+      setWaitlistSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -234,6 +249,17 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
           </div>
 
           <form onSubmit={handleWaitlistSubmit} className="space-y-4">
+            {/* Honeypot: hidden from humans, bots fill it and get rejected */}
+            <input
+              type="text"
+              name="website"
+              value={waitlistWebsite}
+              onChange={(e) => setWaitlistWebsite(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="hidden"
+            />
             <div>
               <label htmlFor="waitlist-name" className="block text-xs font-medium text-[var(--mut)] mb-1.5">
                 Name
@@ -265,6 +291,10 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
                 required
               />
             </div>
+
+            {waitlistError && (
+              <p className="text-xs text-[#B3261E] text-center leading-relaxed">{waitlistError}</p>
+            )}
 
             <button
               type="submit"
