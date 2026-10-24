@@ -1,0 +1,16 @@
+# Ownbench
+
+> Ownbench builds offline desktop tools that solo online sellers buy once and keep — one-time purchase, no subscriptions, everything runs locally on your own computer.
+
+## Products
+
+### Listing Bench
+- URL: https://kunknown321.github.io/ownbench-site/
+- What it is: a desktop app that turns one set of product-listing photos into ready-to-upload images for six marketplaces in a single batch. "Fifty photos in, six marketplaces out."
+- Price: $29 one-time (includes all 1.x updates; no renewal, no subscription)
+- Platforms: macOS (Apple Silicon and Intel) and Windows 10/11; works fully offline, activation happens on the user's own computer
+- Marketplace image specs handled: Etsy 2000 px square; eBay 1600 px; Shopify 4:3 at 2048 px; Amazon 2000 px with pure white background; Poshmark 1200 px; Social 4:5 (e.g. 50 listings → 300 correctly sized exports)
+- Main features: batch conversion to each marketplace's required size and format (Conform), padding/matting for marketplace canvas rules, watermark or label stamping (Stamp), removal of hidden photo metadata before publishing (Scrub), custom dimensions for any other platform
+- Who it is for: solo online sellers on Etsy, eBay, Shopify, Amazon, and Poshmark who batch-prepare listings and want to stop doing photo exports by hand
+- Status (October 2026): pre-order site is live; checkout opens soon — join the waitlist at https://kunknown321.github.io/ownbench-site/
+- Contact: support.openbench@gmail.com
